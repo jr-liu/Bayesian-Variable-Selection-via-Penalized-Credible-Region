@@ -7,9 +7,9 @@ With the increasing dimensions of modern data and necessity to reduce dimensions
 ## Extensive Description of the Paper
 ### Part I: Introduction
 The paper begins by reviewing traditional Bayesian variable selection. In high-dimensional settings, where $p \gg n$, only an unknown subset of $\boldsymbol{\beta}$ is truly relevant. The traditional Bayesian approach to variable selection places a prior on $\boldsymbol{\beta}$ and proceeds by indexing candidate predictors using an indicator vector 
-\[
-\boldsymbol{\delta} = (\delta_1, \delta_2, \ldots, \delta_p),
-\]
+$
+\boldsymbol{\delta} = (\boldsymbol{\delta_1}, \boldsymbol{\delta_2}, \boldsymbol{\delta_3})
+$
 where each $\delta_j \in \{0,1\}$ indicates whether the $j$th predictor is included in the model. 
 
 Posterior probabilities for each combination of predictors can then be computed, and the model with the largest posterior probability is intuitively regarded as the optimal one. However, direct evaluation of the posterior probabilities for all $2^p$ possible models is often computationally infeasible. To address this issue, Stochastic Search Variable Selection (SSVS) based on Markov chain Monte Carlo (MCMC) methods has been developed.
