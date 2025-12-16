@@ -75,23 +75,21 @@ For the credible sets approach, I utilized an online package called â€œBayesPenâ
 
 Subsequently, I plotted the ROC curves of the complete solution paths by computing the false positive rate (FPR) and true positive rate (TPR). However, when calculating MS-O and MS-N, I used only the first 20 ordered sets from the complete paths. These first 20 ordered sets contain the variables that were added to the model the earliest. Ideally, the first 20 ordered sets should contain all 13 true variables. Below are the ROC plots under each setting.
 
-![4](https://github.com/user-attachments/assets/db2586b7-7ac8-4dfc-8e7b-c79390bae6d9)
+<img width="600" height="430" alt="Untitled" src="https://github.com/user-attachments/assets/9d63aaf7-2c8e-4eb4-bf68-d4ba557309cb" />
+<img width="600" height="430" alt="Untitled1" src="https://github.com/user-attachments/assets/e8e49779-6772-47e3-b8b2-f160dcc41d4b" />
+<img width="600" height="430" alt="Untitled2" src="https://github.com/user-attachments/assets/05ecd126-e5fa-47e1-b1fd-2c8f6f324ee0" />
+<img width="600" height="430" alt="Untitled3" src="https://github.com/user-attachments/assets/c7794444-4fba-49d3-a917-b7f508618669" />
 
-![5](https://github.com/user-attachments/assets/482651dc-dc3a-46e3-8346-913fb071291e)
-
-![6](https://github.com/user-attachments/assets/4e1a406c-63d2-485f-a411-0748908e2b11)
-
-![7](https://github.com/user-attachments/assets/e169a7f6-2904-489c-a0cd-8411252e7c81)
 
 From the above plots, we can see that in most cases, the joint and marginal credible regions approaches have similar ROC curves and area under the curve (AUC). The joint approach performs slightly better than the marginal approach when variables are not correlated. Increasing dimensions and correlation does not reduce the AUC for these two methods. On the other hand, the Lasso approach underperforms both credible sets approaches most of the time, especially in a higher-dimensional setting, but it is surprising to see that in a low-dimensional setting, when the correlation increases from 0 to 0.5, the Lasso regression does not perform worse. This finding somehow contradicts the statement in the paper that Lasso suffers greatly from correlations among variables. Hence, this contradiction is worth further study. After that, I created a table for MS-O and MS-N.
 
-![t1](https://github.com/user-attachments/assets/9764a7c2-3bc4-47ce-9a4e-1843ce812df8)
+<img width="580" height="280" alt="Untitled4" src="https://github.com/user-attachments/assets/2a7dc8f4-9326-4906-9a12-c7b572eab3d9" />
 
 Table 1 compares the MS-O and MS-N for the first 20 ordered sets under each setting. The marginal method keeps selecting the most original predictors in all cases, followed by the joint approach, but the marginal approach also has a higher MS-N than the joint one. Moreover, I notice that when $p$ is large, the MS-O of credible sets methods improves and the MS-N drops as we increase the correlation. This suggests that the proposed approach yields an even more accurate outcome using correlated predictors. In a low-dimensional setting, the Lasso regression always selects the fewest original variables and the most noise variables. With a higher dimension, the average numbers of selected original variables of Lasso are down to 1.55 and 1.6, which are very low and unreasonable. Meanwhile, the MS-N is down to 0 for both independent and correlated variables. This result again assures us that Lasso is not as suitable as the credible sets approach when $p$ is large.
 
 Regarding the computation time, when $p$ is small, the output of Lasso regression was generated almost immediately as I ran the code, while the credible sets methods took less than 5 seconds. When I increased the dimension to 413, the frequentist Lasso took a few seconds, and the credible sets method took less than 20 seconds. In general, the proposed approach took longer.
 
-![WeChat65f90c3610079b261f801c58daaabe4e](https://github.com/user-attachments/assets/f46cbb10-cca5-455e-bb74-5e3988282f3c)
+<img width="680" height="300" alt="Untitled5" src="https://github.com/user-attachments/assets/493a7997-ec55-4973-a151-7f476ddf848c" />
 
 Next, in order to find out the exact variables selected, I examined the order path of each method. For convenience, I only selected the independent cases under low-dimensional and high-dimensional settings to study. A table including the first 13 variables added is shown above. Among these variables, "lstat", "rm", "ptratio", "dis", "nox", "black", and "tax" frequently appear at the beginning. These variables correspond to % lower status of the population, average number of rooms per dwelling, pupil-teacher ratio by town, weighted distances to five Boston employment centers, nitric oxides concentration (parts per 10 million), $1000 (B_k - 0.63)^2$ where $B_k$ is the proportion of blacks by town, and full-value property-tax rate per \$10,000. All methods selected a few noise variables, with the marginal approach in a high-dimensional setting selecting the most. Among those original variables, "age" was never selected, indicating that the proportion of owner-occupied units built prior to 1940 is not a necessary element determining the median value of owner-occupied homes in \$1000s. Moreover, we do notice that the marginal order path in high dimension is slightly different from the remaining three.
 
